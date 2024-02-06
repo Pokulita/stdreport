@@ -6,15 +6,42 @@
 
 using namespace std;
 
+enum CourseN
+{
+    PR1,
+    TGI,
+    MG1,
+    THI,
+    PR2,
+    MOD,
+    OS,
+    ADS,
+    IDS,
+    PLC,
+    SE1,
+    SE2,
+    NET,
+    RGG,
+    HCI,
+    MG2,
+    NUM,
+    EST,
+    MM,
+    W1,
+    W2,
+    BA,
+    END
+};
+
 class Course
 {
 private:
-    string course_nummer;
+    CourseN num;
     string name;
     int ects_value;
 
 public:
-    Course(string course_nummer, string name, int ects_value);
+    Course(CourseN num);
     ostream &print(ostream &o) const;
 };
 

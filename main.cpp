@@ -13,13 +13,13 @@ int main()
 {
     // first tests
     vector<Course> vec;
-    Course course1(CourseN::ADS);
+    Course course1("ADS");
     // Course course2{"tHReS", "MGI1", 6};
     // Course course3{"G4RbS", "PR2", 6};
     vec.push_back(course1);
     // vec.push_back(course3);
     // vec.push_back(course2);
-    Student std1{"a12134181", "Mykyta", 19, 24, vec};
+    Student std1{"a12134181", "Mykyta", 19};
 
     // cout << std1;
 
@@ -55,7 +55,6 @@ int main()
             string mtrk;
             string name;
             int age;
-            vector<Course> v;
             cout << "Enter matrikel nummer: ";
             cin >> mtrk;
             if (mtrk.size() != 9)
@@ -65,7 +64,7 @@ int main()
             cin >> name;
             cout << "Enter age: ";
             cin >> age;
-            std.insert(make_pair(mtrk, Student(mtrk, name, age, 0, v)));
+            std.insert(make_pair(mtrk, Student(mtrk, name, age)));
         }
         if (action == "select")
         {
@@ -74,14 +73,15 @@ int main()
             cin >> s;
             if (std.count(s) != 0)
             {
-                cout << std.find(s)->second << endl;
+
                 while (cin)
                 {
+                    cout << std.find(s)->second << endl;
                     string std_action;
                     cout << endl;
                     cout << "Available actions" << endl;
                     cout << endl
-                         << "!view" << endl
+                         << "register" << endl
                          << "!enrol" << endl
                          << "!select" << endl
                          << "exit" << endl;
@@ -89,8 +89,23 @@ int main()
                          << "Select an action: " << endl;
                     cin >> std_action;
                     cout << endl;
+                    if (std_action == "register")
+                    {
+                        cout << "Available courses: " << endl;
+                        std.find(s)->second.print_available();
+                        while (cin)
+                        {
+                            string reg_num;
+                            cout << "Enter course nummer: ";
+                            cin >> reg_num;
+                            cout << endl;
+                            std.find(s)->second.course_register(reg_num);
+                            break;
+                        }
+                    }
                     if (std_action == "exit")
                         break;
+                    cout << endl;
                 }
             }
             else

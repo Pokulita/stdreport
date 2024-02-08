@@ -30,11 +30,57 @@ void Student::print_available()
     }
 }
 
+void Student::print_current()
+{
+    for (const auto &c : current_courses)
+    {
+        cout << "-- " << c.second << endl;
+    }
+}
+
+void Student::print_passed()
+{
+    for (const auto &c : passed_courses)
+    {
+        cout << "-- " << c.first << endl;
+        cout << "  Note-- " << c.second << " Ects" << endl;
+    }
+}
+
 void Student::course_register(string c)
 {
     current_courses.insert(make_pair(c, Course(c)));
     available_courses.erase(c);
 }
+
+void Student::course_finish(string c)
+{
+    cout << "What mark did this student get: ";
+    int mark;
+    cin >> mark;
+    passed_courses.push_back(make_pair(Course(c), mark));
+    ects += Course(c).get_ects();
+    current_courses.erase(c);
+}
+
+int Student::get_average()
+{
+    int count = 0;
+    int total = 0;
+    for (const auto m : passed_courses)
+    {
+        total += m.second;
+        count++;
+    }
+    return total / count;
+}
+
+bool Student::can_graduate()
+{
+    return available_courses.empty() && current_courses.empty();
+}
+
+string Student::get_name() { return name; }
 
 ostream &Student::print(ostream &o) const
 {

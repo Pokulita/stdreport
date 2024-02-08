@@ -82,8 +82,10 @@ int main()
                     cout << "Available actions" << endl;
                     cout << endl
                          << "register" << endl
-                         << "!enrol" << endl
-                         << "!select" << endl
+                         << "write exam" << endl
+                         << "marks" << endl
+                         << "average" << endl
+                         << "graduate" << endl
                          << "exit" << endl;
                     cout << endl
                          << "Select an action: " << endl;
@@ -101,6 +103,36 @@ int main()
                             cout << endl;
                             std.find(s)->second.course_register(reg_num);
                             break;
+                        }
+                    }
+                    if (std_action == "writeexam")
+                    {
+                        std.find(s)->second.print_current();
+                        string c_action;
+                        cout << "Enter the course nummer, you want to write exam for:";
+                        cin >> c_action;
+                        cout << endl;
+                        std.find(s)->second.course_finish(c_action);
+                    }
+                    if (std_action == "marks")
+                    {
+                        std.find(s)->second.print_passed();
+                    }
+                    if (std_action == "average")
+                    {
+                        cout << std.find(s)->second.get_average() << endl;
+                    }
+                    if (std_action == "gaduate")
+                    {
+                        if (std.find(s)->second.can_graduate())
+                        {
+                            cout << "Congratulations to " << std.find(s)->second.get_name() << " with graduation from bacherol Informatik" << endl;
+                            cout << "The average mark of this student is " << std.find(s)->second.get_average() << endl;
+                            std.erase(s);
+                        }
+                        else
+                        {
+                            cout << "This student can not graduate yet!" << endl;
                         }
                     }
                     if (std_action == "exit")

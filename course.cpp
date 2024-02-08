@@ -132,6 +132,11 @@ ostream &Course::print(ostream &o) const
     return o;
 }
 
+int Course::get_ects()
+{
+    return ects_value;
+}
+
 std::ostream &operator<<(std::ostream &o, const Course &c)
 {
     c.print(o);

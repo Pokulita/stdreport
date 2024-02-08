@@ -16,6 +16,7 @@ private:
 public:
     Course(string num);
     ostream &print(ostream &o) const;
+    int get_ects();
 };
 
 std::ostream &operator<<(std::ostream &o, const Course &c);

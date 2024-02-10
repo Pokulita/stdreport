@@ -82,7 +82,7 @@ int main()
                     cout << "Available actions" << endl;
                     cout << endl
                          << "register" << endl
-                         << "write exam" << endl
+                         << "writeexam" << endl
                          << "marks" << endl
                          << "average" << endl
                          << "graduate" << endl

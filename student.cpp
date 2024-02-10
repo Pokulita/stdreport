@@ -58,9 +58,16 @@ void Student::course_finish(string c)
     cout << "What mark did this student get: ";
     int mark;
     cin >> mark;
-    passed_courses.push_back(make_pair(Course(c), mark));
-    ects += Course(c).get_ects();
-    current_courses.erase(c);
+    if (mark < 0 || mark > 4)
+    {
+        cout << "Insuficient mark to pass this course!";
+    }
+    else
+    {
+        passed_courses.push_back(make_pair(Course(c), mark));
+        ects += Course(c).get_ects();
+        current_courses.erase(c);
+    }
 }
 
 int Student::get_average()
